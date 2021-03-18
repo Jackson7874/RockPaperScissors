@@ -13,9 +13,23 @@ function playRound(playerSelection, computerSelection) {
     return "You lose!"
   } else if (playerSelection == "rock" && computerSelection == "scissors") {
     return "You win!"
+  } else if (playerSelection == "paper" && computerSelection == "scissors") {
+    return "You lose!"
+  } else if (playerSelection == "paper" && computerSelection == "rock") {
+    return "You win!"
+  } else if (playerSelection == "scissors" && computerSelection == "rock") {
+    return "You lose!"
+  } else if (playerSelection == "scissors" && computerSelection == "paper") {
+    return "You win!"
   }
 }
 
-let playerSelection = "rock";
+let playerSelection = prompt("Choose rock, paper, or scissors")
 const computerSelection = computerPlay();
 console.log(playRound(playerSelection, computerSelection));
+
+
+
+function game() {
+
+}
