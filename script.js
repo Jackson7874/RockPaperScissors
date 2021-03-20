@@ -16,7 +16,12 @@ function playerPrompt() {
   return playerChoice;
 }
 
-playerSelection = playerPrompt();
+function playerPromptCheck() {
+    while ((playerChoice !== "rock") && (playerChoice !== "paper") && (playerChoice !== "scissors")) {
+        playerPrompt();
+    }
+}
+
 
 function gameInfo() {
   console.log("-------------------------- \n" 
@@ -48,9 +53,9 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-// First choice input doesnt log in console
 function game() {
-    playerPrompt();
+    playerSelection = playerPrompt();
+    playerPromptCheck();
     let roundText = ("Round " + currentRound);
     console.log("__________________________ \n"
                 + roundText + "\n"
