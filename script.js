@@ -1,7 +1,7 @@
 let playerScore = 0;
 let computerScore = 0;
 let round = 1;
-let gameOver = false
+let outcome = '';
 const choices = ['rock', 'paper', 'scissors'];
 
 const rockButton = document.getElementById('rockButton');
@@ -16,6 +16,10 @@ const playerChoseBox = document.getElementById('playerUpdates');
 const computerChoseBox = document.getElementById('computerUpdates');
 const roundResultsBox = document.getElementById('roundUpdates');
 
+const popUp = document.getElementById('popUp')
+const newGameButton = document.getElementById('ngButton')
+const outcomeText = document.getElementById('outcome')
+
 function computerPlay() {
     const choice = Math.floor(Math.random() * choices.length);
     choices[choice];
@@ -24,8 +28,8 @@ function computerPlay() {
 
 function roundTracker() {
     if (playerScore == 5 || computerScore == 5) {
-        roundsCounter.innerHTML = 'Game Over';
-        gameOver = true
+        roundsCounter.innerHTML = round;
+        popUp.style.display = 'block';
     } else {
         round +=1;
         roundsCounter.innerHTML = round;
@@ -48,6 +52,8 @@ function choicesDisplay(playerChoice, computerChoice) {
 function win() {
     playerScore += 1;
     playerWins.innerHTML = playerScore;
+    outcome = 'Won';
+    outcomeText.innerHTML = 'You ' + outcome + '!';
 
     const roundResults = document.createElement('p');
     roundResults.textContent = 'Player Won Round ' + round + '!';
@@ -60,6 +66,8 @@ function win() {
 function loss() {
     computerScore += 1;
     computerWins.innerHTML = computerScore
+    outcome = 'Lost';
+    outcomeText.innerHTML = 'You ' + outcome + '.';
 
     roundResults = document.createElement('p');
     roundResults.textContent = 'Player Lost Round ' + round + '.';
@@ -74,6 +82,8 @@ function tie() {
     roundResults.textContent = 'Player and Computer Tied Round ' + round + '.';
     roundResults.style.color = 'white';
     roundResultsBox.appendChild(roundResults);
+    outcome = 'Tied';
+    outcomeText.innerHTML = 'You ' + outcome + '.';
 }
 
 function game(playerChoice) {
@@ -97,6 +107,10 @@ function game(playerChoice) {
     }
     roundTracker();
     choicesDisplay(playerChoice, computerChoice);
+}
+
+newGameButton.onclick = function() {
+    location.reload();
 }
 
 function playGame() {
